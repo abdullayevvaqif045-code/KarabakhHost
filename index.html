@@ -82,9 +82,12 @@ function lockAdmin(){sessionStorage.removeItem("kh_demo_unlocked");document.getE
 function renderEditors(){document.getElementById("planEditors").innerHTML=plans.map((p,i)=>`<div class="card" style="margin:14px 0"><h3>${esc(p.name)}</h3><div class="row"><div class="field"><label>Paket adı</label><input id="n${i}" value="${esc(p.name)}"></div><div class="field"><label>Qiymət (AZN / ay)</label><input id="p${i}" type="number" min="0" step="0.01" value="${Number(p.price)}"></div></div><div class="field"><label>RAM</label><input id="r${i}" value="${esc(p.ram)}"></div><div class="field"><label>Təsvir</label><input id="d${i}" value="${esc(p.desc)}"></div></div>`).join("")}
 function savePlans(){plans=plans.map((p,i)=>({...p,name:document.getElementById("n"+i).value.trim()||p.name,price:Math.max(0,Number(document.getElementById("p"+i).value)||0),ram:document.getElementById("r"+i).value.trim(),desc:document.getElementById("d"+i).value.trim()}));localStorage.setItem("kh_plans",JSON.stringify(plans));renderPlans();renderEditors();document.getElementById("saveMsg").textContent="Qiymətlər bu brauzerdə yadda saxlanıldı."}
 function resetPlans(){if(!confirm("İlkin paket qiymətləri bərpa edilsin?"))return;plans=defaults.map(x=>({...x,features:[...x.features]}));localStorage.removeItem("kh_plans");renderPlans();renderEditors();document.getElementById("saveMsg").textContent="İlkin qiymətlər bərpa edildi."}
-document.getElementById("year").textContent=new Date().getFullYear();renderPlans();
+document.getElementById("year").textContent=new Date().getFullYear();
+renderPlans();
+</script>
+
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script src="app.js"></script>
-</script>
+
 </body>
 </html>
