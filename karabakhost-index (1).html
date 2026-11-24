@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="az">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#090d18">
+<title>KarabakhHost — Minecraft Hosting</title>
+<style>
+:root{--bg:#080c16;--panel:#111827;--panel2:#172235;--line:#26344a;--text:#edf4ff;--muted:#9aabc4;--blue:#4f8cff;--cyan:#39d5c5;--green:#43d18a;--red:#ff687d}
+*{box-sizing:border-box}body{margin:0;background:radial-gradient(circle at 15% 0%,#152849 0,transparent 34%),var(--bg);color:var(--text);font:15px/1.5 system-ui,-apple-system,Segoe UI,Roboto,Arial}
+.wrap{max-width:1120px;margin:auto;padding:22px}.top{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:12px 0 26px}.brand{font-weight:900;font-size:22px;letter-spacing:.3px}.brand span{color:var(--cyan)}.nav{display:flex;gap:10px;flex-wrap:wrap}
+button,.btn{border:0;border-radius:11px;padding:11px 16px;font-weight:750;cursor:pointer;color:white;background:linear-gradient(135deg,var(--blue),#735dff)}button.secondary{background:#202d42;border:1px solid var(--line)}button:disabled{opacity:.5;cursor:not-allowed}
+.hero{padding:42px 0 32px;max-width:720px}.tag{display:inline-block;padding:6px 10px;border:1px solid #285e65;background:#103137;color:#83f3e5;border-radius:99px;font-size:12px;font-weight:800}.hero h1{font-size:clamp(34px,7vw,58px);line-height:1.04;margin:18px 0}.hero p,.muted{color:var(--muted)}.hero p{font-size:17px;max-width:600px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px;margin:24px 0}.card{background:linear-gradient(160deg,var(--panel),#0e1726);border:1px solid var(--line);border-radius:18px;padding:20px;box-shadow:0 12px 35px #0003}.card h3{margin:0 0 6px}.price{font-size:34px;font-weight:900;margin:16px 0 2px}.price small{font-size:14px;color:var(--muted);font-weight:600}.features{padding-left:18px;color:var(--muted);min-height:94px}.features li{margin:6px 0}.section{margin:38px 0}.section h2{font-size:25px;margin:0 0 8px}.badge{display:inline-block;color:#9eead6;background:#123a35;padding:4px 8px;border-radius:7px;font-size:11px;font-weight:800}
+footer{border-top:1px solid var(--line);margin-top:50px;padding:22px 0;color:var(--muted);font-size:13px}
+.hidden{display:none!important}.field{display:grid;gap:6px;margin:12px 0}.field label{font-size:13px;color:var(--muted)}input,textarea{width:100%;background:#0a1220;border:1px solid var(--line);border-radius:10px;padding:12px;color:var(--text);font:inherit}input:focus,textarea:focus{outline:2px solid #4f8cff66;border-color:var(--blue)}
+.adminbox{max-width:650px;margin:24px auto}.row{display:grid;grid-template-columns:1fr 1fr;gap:12px}.notice{border:1px solid #705b25;background:#302713;color:#ffe2a0;border-radius:12px;padding:13px;font-size:13px;margin:15px 0}.success{color:#8df0b9}.error{color:#ff9aaa}.actions{display:flex;gap:9px;flex-wrap:wrap;margin-top:14px}
+@media(max-width:600px){.wrap{padding:16px}.top{align-items:flex-start;flex-direction:column}.hero{padding-top:24px}.row{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header class="top">
+  <div class="brand">KARABAKH<span>HOST</span></div>
+  <nav class="nav">
+    <button class="secondary" onclick="showSection('home')">Ana səhifə</button>
+    <button class="secondary" onclick="showSection('admin')">İdarəçi paneli</button>
+  </nav>
+</header>
+
+<main id="home">
+  <section class="hero">
+    <span class="tag">MINECRAFT SERVER HOSTING</span>
+    <h1>Minecraft serverini<br><span style="color:var(--cyan)">asanlıqla yarat.</span></h1>
+    <p>KarabakhHost ilə server planlarını müqayisə et. Pulsuz paketlə başla, ehtiyacına uyğun paketi seç.</p>
+    <div class="actions"><button onclick="document.getElementById('plans').scrollIntoView({behavior:'smooth'})">Paketlərə bax</button></div>
+  </section>
+  <section class="section" id="plans">
+    <h2>Hosting paketləri</h2><p class="muted">Qiymətlər idarəçi panelindən dəyişdirilə bilər.</p>
+    <div class="grid" id="plansGrid"></div>
+  </section>
+  <section class="section card">
+    <h2>Necə işləyir?</h2>
+    <p class="muted">Paket seçimi və ödəniş inteqrasiyası növbəti mərhələdə backend-ə qoşulacaq. Bu ilkin versiya yalnız sayt görünüşü və paket qiymətlərinin demo idarəsi üçündür.</p>
+  </section>
+</main>
+
+<main id="admin" class="hidden">
+  <div class="adminbox card">
+    <span class="badge">OWNER AREA · DEMO</span>
+    <h2>İdarəçi paneli</h2>
+    <p class="muted">Paketlərin adını, qiymətini və RAM miqdarını buradan dəyiş.</p>
+    <div class="notice">Təhlükəsizlik qeydi: bu ilkin HTML versiyasında giriş sistemi və dəyişikliklər yalnız bu telefondakı brauzerdə saxlanılır. Bu, real və təhlükəsiz admin girişi deyil. Real parol və ödəniş sistemi backend qurulandan sonra əlavə ediləcək.</div>
+    <div id="adminLogin">
+      <div class="field"><label>Demo panelə daxil olmaq üçün özünə bir PIN təyin et</label><input id="pin" type="password" placeholder="Bu cihaz üçün demo PIN" autocomplete="off"></div>
+      <button onclick="unlockAdmin()">Daxil ol</button>
+      <p id="loginMsg" class="muted"></p>
+    </div>
+    <div id="editor" class="hidden">
+      <div id="planEditors"></div>
+      <div class="actions"><button onclick="savePlans()">Dəyişiklikləri yadda saxla</button><button class="secondary" onclick="resetPlans()">İlkin qiymətlərə qaytar</button><button class="secondary" onclick="lockAdmin()">Çıxış</button></div>
+      <p id="saveMsg" class="success"></p>
+    </div>
+  </div>
+</main>
+<footer>© <span id="year"></span> KarabakhHost · İlkin demo versiya</footer>
+</div>
+<script>
+const defaults=[
+ {name:"Free",price:0,ram:"1 GB",desc:"Başlamaq üçün pulsuz paket",features:["1 GB RAM","1 server","İcma dəstəyi"]},
+ {name:"Premium",price:3,ram:"4 GB",desc:"Dostlarla oynamaq üçün",features:["4 GB RAM","2 server","Prioritet dəstək"]},
+ {name:"Pro",price:5,ram:"6 GB",desc:"Daha böyük serverlər üçün",features:["6 GB RAM","3 server","Daha çox resurs"]},
+ {name:"Ultra",price:10,ram:"10 GB",desc:"Yüksək resurslu paket",features:["10 GB RAM","5 server","Premium dəstək"]}
+];
+let plans=loadPlans();
+function loadPlans(){try{return JSON.parse(localStorage.getItem("kh_plans"))||structuredClone(defaults)}catch(e){return defaults.map(x=>({...x}))}}
+function renderPlans(){document.getElementById("plansGrid").innerHTML=plans.map(p=>`<article class="card"><span class="badge">${esc(p.ram)} RAM</span><h3 style="margin-top:14px">${esc(p.name)}</h3><p class="muted">${esc(p.desc)}</p><div class="price">${Number(p.price)===0?"Pulsuz":Number(p.price).toFixed(2)+" ₼"} <small>${Number(p.price)===0?"":" / ay"}</small></div><ul class="features">${p.features.map(f=>`<li>${esc(f)}</li>`).join("")}</ul><button onclick="alert('Sifariş və kartla ödəniş backend qoşulduqdan sonra aktiv olacaq.')">${Number(p.price)===0?"Başla":"Paketi seç"}</button></article>`).join("")}
+function esc(s){return String(s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]))}
+function showSection(id){document.getElementById("home").classList.toggle("hidden",id!=="home");document.getElementById("admin").classList.toggle("hidden",id!=="admin");window.scrollTo(0,0)}
+function unlockAdmin(){const v=document.getElementById("pin").value;if(!v){document.getElementById("loginMsg").textContent="PIN daxil et.";return}sessionStorage.setItem("kh_demo_unlocked","yes");document.getElementById("adminLogin").classList.add("hidden");document.getElementById("editor").classList.remove("hidden");renderEditors()}
+function lockAdmin(){sessionStorage.removeItem("kh_demo_unlocked");document.getElementById("editor").classList.add("hidden");document.getElementById("adminLogin").classList.remove("hidden");document.getElementById("pin").value=""}
+function renderEditors(){document.getElementById("planEditors").innerHTML=plans.map((p,i)=>`<div class="card" style="margin:14px 0"><h3>${esc(p.name)}</h3><div class="row"><div class="field"><label>Paket adı</label><input id="n${i}" value="${esc(p.name)}"></div><div class="field"><label>Qiymət (AZN / ay)</label><input id="p${i}" type="number" min="0" step="0.01" value="${Number(p.price)}"></div></div><div class="field"><label>RAM</label><input id="r${i}" value="${esc(p.ram)}"></div><div class="field"><label>Təsvir</label><input id="d${i}" value="${esc(p.desc)}"></div></div>`).join("")}
+function savePlans(){plans=plans.map((p,i)=>({...p,name:document.getElementById("n"+i).value.trim()||p.name,price:Math.max(0,Number(document.getElementById("p"+i).value)||0),ram:document.getElementById("r"+i).value.trim(),desc:document.getElementById("d"+i).value.trim()}));localStorage.setItem("kh_plans",JSON.stringify(plans));renderPlans();renderEditors();document.getElementById("saveMsg").textContent="Qiymətlər bu brauzerdə yadda saxlanıldı."}
+function resetPlans(){if(!confirm("İlkin paket qiymətləri bərpa edilsin?"))return;plans=defaults.map(x=>({...x,features:[...x.features]}));localStorage.removeItem("kh_plans");renderPlans();renderEditors();document.getElementById("saveMsg").textContent="İlkin qiymətlər bərpa edildi."}
+document.getElementById("year").textContent=new Date().getFullYear();renderPlans();
+</script>
+</body>
+</html>
