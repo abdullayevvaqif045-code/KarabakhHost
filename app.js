@@ -59,4 +59,38 @@ function escapeHTML(value) {
 
 // Səhifə açıldıqda paketləri yüklə
 document.addEventListener("DOMContentLoaded", loadPlans);
-      
+async function updatePlan(id, name, price, ram, description) {
+  const { data, error } = await supabaseClient
+    .from("plans")
+    .update({
+      name,
+      price: Number(price),
+      ram,
+      description
+    })
+    .eq("id", id)
+    .select();
+
+  if (error) {
+    alert("Xəta: " + error.message);
+    return;
+  }
+
+  alert("Paket yeniləndi!");
+  loadPlans();
+}
+
+async function getPlansForOwner() {
+  const { data, error } = await supabaseClient
+    .from("plans")
+    .select("*")
+    .order("price");
+
+  if (error) {
+    console.error(error);
+    return [];
+  }
+
+  return data;
+}
+
