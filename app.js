@@ -1,6 +1,6 @@
 
-const SUPABASE_URL = "BURAYA_PROJECT_URL";
-const SUPABASE_ANON_KEY = "BURAYA_PUBLISHABLE_KEY";
+const SUPABASE_URL = "https://bvauyaaegrjlucpihbwj.supabase.co";
+const SUPABASE_ANON_KEY = "sb_publishable_vdiOw2VdIq73RX4NNpOKIA_RdeShEvc";
 
 // Supabase bağlantısı
 const supabaseClient = window.supabase.createClient(
