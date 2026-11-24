@@ -72,9 +72,6 @@ const defaults=[
  {name:"Pro",price:5,ram:"6 GB",desc:"Daha böyük serverlər üçün",features:["6 GB RAM","3 server","Daha çox resurs"]},
  {name:"Ultra",price:10,ram:"10 GB",desc:"Yüksək resurslu paket",features:["10 GB RAM","5 server","Premium dəstək"]}
 ];
-  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-<script src="app.js"></script>
-  
 let plans=loadPlans();
 function loadPlans(){try{return JSON.parse(localStorage.getItem("kh_plans"))||structuredClone(defaults)}catch(e){return defaults.map(x=>({...x}))}}
 function renderPlans(){document.getElementById("plansGrid").innerHTML=plans.map(p=>`<article class="card"><span class="badge">${esc(p.ram)} RAM</span><h3 style="margin-top:14px">${esc(p.name)}</h3><p class="muted">${esc(p.desc)}</p><div class="price">${Number(p.price)===0?"Pulsuz":Number(p.price).toFixed(2)+" ₼"} <small>${Number(p.price)===0?"":" / ay"}</small></div><ul class="features">${p.features.map(f=>`<li>${esc(f)}</li>`).join("")}</ul><button onclick="alert('Sifariş və kartla ödəniş backend qoşulduqdan sonra aktiv olacaq.')">${Number(p.price)===0?"Başla":"Paketi seç"}</button></article>`).join("")}
@@ -86,6 +83,8 @@ function renderEditors(){document.getElementById("planEditors").innerHTML=plans.
 function savePlans(){plans=plans.map((p,i)=>({...p,name:document.getElementById("n"+i).value.trim()||p.name,price:Math.max(0,Number(document.getElementById("p"+i).value)||0),ram:document.getElementById("r"+i).value.trim(),desc:document.getElementById("d"+i).value.trim()}));localStorage.setItem("kh_plans",JSON.stringify(plans));renderPlans();renderEditors();document.getElementById("saveMsg").textContent="Qiymətlər bu brauzerdə yadda saxlanıldı."}
 function resetPlans(){if(!confirm("İlkin paket qiymətləri bərpa edilsin?"))return;plans=defaults.map(x=>({...x,features:[...x.features]}));localStorage.removeItem("kh_plans");renderPlans();renderEditors();document.getElementById("saveMsg").textContent="İlkin qiymətlər bərpa edildi."}
 document.getElementById("year").textContent=new Date().getFullYear();renderPlans();
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="app.js"></script>
 </script>
 </body>
 </html>
