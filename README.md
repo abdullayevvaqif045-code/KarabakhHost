@@ -1,2 +1,0 @@
-# KarabakhHost
-Java edition KarabakhLauncher
