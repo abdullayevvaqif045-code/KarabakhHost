@@ -83,7 +83,7 @@ function renderEditors(){document.getElementById("planEditors").innerHTML=plans.
 function savePlans(){plans=plans.map((p,i)=>({...p,name:document.getElementById("n"+i).value.trim()||p.name,price:Math.max(0,Number(document.getElementById("p"+i).value)||0),ram:document.getElementById("r"+i).value.trim(),desc:document.getElementById("d"+i).value.trim()}));localStorage.setItem("kh_plans",JSON.stringify(plans));renderPlans();renderEditors();document.getElementById("saveMsg").textContent="Qiymətlər bu brauzerdə yadda saxlanıldı."}
 function resetPlans(){if(!confirm("İlkin paket qiymətləri bərpa edilsin?"))return;plans=defaults.map(x=>({...x,features:[...x.features]}));localStorage.removeItem("kh_plans");renderPlans();renderEditors();document.getElementById("saveMsg").textContent="İlkin qiymətlər bərpa edildi."}
 document.getElementById("year").textContent=new Date().getFullYear();renderPlans();
-  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script src="app.js"></script>
 </script>
 </body>
